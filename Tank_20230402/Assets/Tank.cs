@@ -8,12 +8,45 @@ public class Tank : MonoBehaviour
     public float MoveSpeed = 1f;
     public float RotSpeed = 1f;
 
+    public Rigidbody LinkRigid = null;
+    public Vector3 Direction = new Vector3(0, 1, 1);
+    public float Pow = 100;
+    public Transform BulletPos = null;
 
+    [Header("테스트용들")]
     public float _TestCode_Rot = 0f;
+
+    void UpdateFire()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //LinkRigid.AddForce(Direction * Pow);
+
+            // 방법 1
+            Vector3 direction2 = transform.rotation * Direction;
+
+            // 발사체를 복사
+            Rigidbody copyobj = GameObject.Instantiate( LinkRigid
+                , BulletPos.position
+                , Quaternion.identity );
+            copyobj.gameObject.SetActive(true);
+            //copyobj.position = BulletPos.position;
+
+            copyobj.AddForce(BulletPos.up * Pow );
+        }
+
+    }
+
+
+    private void Awake()
+    {
+        // 프리팹으로 이동시킵니다
+        LinkRigid.gameObject.SetActive(false);
+    }
 
     void Start()
     {
-        
+
     }
 
     void UpdateUnityAPI()
@@ -48,13 +81,12 @@ public class Tank : MonoBehaviour
         transform.localPosition = temppos;
     }
 
-    // Update is called once per frame
     void Update()
     {
         // 각도
         // 
         UpdateUnityAPI();
 
-
+        UpdateFire();
     }
 }
