@@ -8,9 +8,20 @@ public class ShellCompoment : MonoBehaviour
     // 충돌시 처리할것들
     void OnCollisionEnter(Collision collision)
     {
-        GameObject.Instantiate(ShellExpolistion
+        
+        GameObject expolistionclone = GameObject.Instantiate(ShellExpolistion
             , transform.position
             , Quaternion.identity);
+
+        // 폭발 방법 1
+        if ( false )
+        {
+            ParticleSystem system = expolistionclone.GetComponent<ParticleSystem>();
+            system.Play();
+            GameObject.Destroy(expolistionclone, 5f);
+        }
+        
+
 
         // 자신을파괴
         GameObject.Destroy(this.gameObject);
