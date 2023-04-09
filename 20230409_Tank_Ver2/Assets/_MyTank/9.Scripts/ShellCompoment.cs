@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ShellCompoment : MonoBehaviour
 {
+
+    public float ShootPow = 5f;
     public GameObject ShellExpolistion = null;
     // 面倒矫 贸府且巴甸
     void OnCollisionEnter(Collision collision)
@@ -12,6 +14,16 @@ public class ShellCompoment : MonoBehaviour
         GameObject expolistionclone = GameObject.Instantiate(ShellExpolistion
             , transform.position
             , Quaternion.identity);
+
+        if( collision.gameObject.tag == "Enemy")
+        {
+            Vector3 direction = collision.transform.position - transform.position;
+            direction.Normalize();
+            float speed = collision.relativeVelocity.magnitude;
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(speed * direction * ShootPow, ForceMode.Impulse);
+
+        }
+
 
         // 气惯 规过 1
         if ( false )
