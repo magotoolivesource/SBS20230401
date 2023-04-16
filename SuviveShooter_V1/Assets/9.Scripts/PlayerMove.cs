@@ -16,8 +16,6 @@ public class PlayerMove : MonoBehaviour
 {
     void Start()
     {
-
-        
     }
     public float MoveSpeed = 1f;
     void UpdateMove()
@@ -35,41 +33,21 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-    public Quaternion MyRot;
-    public Vector4 TempRot;
-
-
-    public Vector2 MouseScreenPos;
-
-    public Transform GuideBox;
+    
+    public LayerMask LandMask;
+    protected Vector3 m_GizmoeHitPos;
     void UpdateRotaion()
     {
-        
-
-
-        //MouseScreenPos = Input.mousePosition;
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitinfo;
 
-        if ( Physics.Raycast(ray, out hitinfo, 999f ) )
+        if ( Physics.Raycast(ray, out hitinfo, 999f, LandMask ) )
         {
+            m_GizmoeHitPos = hitinfo.point;
             Vector3 lookvec = hitinfo.point - transform.position;
             transform.rotation = Quaternion.LookRotation(lookvec, Vector3.up);
         }
 
-        MyRot = transform.rotation;
-        TempRot.x = MyRot.x;
-        TempRot.y = MyRot.y;
-        TempRot.z = MyRot.z;
-        TempRot.w = MyRot.w;
-
-        //Quaternion rot = new Quaternion();
-
-        ////transform.rotation;
-        ////transform.localRotation;
-        ////transform.position = Vector3.zero;
-        //transform.rotation = Quaternion.
     }
 
     void TestRayCastHit()
@@ -96,20 +74,8 @@ public class PlayerMove : MonoBehaviour
     public Color DebugColor = Color.red;
     private void OnDrawGizmos()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawLine(ray.origin, ray.direction * 999f);
-
-        RaycastHit hitinfo;
-        if (Physics.Raycast(ray, out hitinfo, 999f))
-        {
-            Vector3 lookvec = hitinfo.point - transform.position;
-
-            Gizmos.color = DebugColor;
-            Gizmos.DrawWireCube(hitinfo.point, Vector3.one);
-        }
-
+        Gizmos.color = DebugColor;
+        Gizmos.DrawWireCube(m_GizmoeHitPos, Vector3.one * 0.3f);
         
     }
 
