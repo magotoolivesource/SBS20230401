@@ -57,6 +57,10 @@ public class GameManager : SingleTon_Mono<GameManager>
         {
             // 테스트 코드
             ISMineArr[1, 2] = true;
+            ISMineArr[1, 1] = true;
+            ISMineArr[2, 2] = true;
+            ISMineArr[2, 3] = true;
+            ISMineArr[1, 3] = true;
         }
 
 
@@ -79,6 +83,18 @@ public class GameManager : SingleTon_Mono<GameManager>
         CreateMine();
 
         InitMineSeeting();
+
+        CenterCameraPos();
+    }
+
+    void CenterCameraPos()
+    {
+        float offsetx = (float)XSize * 0.5f;
+        float offsety = (float)YSize * 0.5f;
+
+        LinkCam.transform.position = new Vector3(offsetx - 0.5f
+                                    , offsety - 0.5f
+                                    , LinkCam.transform.position.z);
     }
 
     void CreateMine()

@@ -49,12 +49,23 @@ public class BlockElement : MonoBehaviour
         Debug.Log($"레이로 부딪힌값 : {this.GridPos.x}, {this.GridPos.y}");
         //Debug.Log("블럭을 클릭했음");
 
+        if( m_ISMine )
+        {
+            GetComponent<SpriteRenderer>().sprite = ResourceManager.Instance.GetBoomSprite();
+            return;
+        }
+
 
         //int minecount = m_ParentManager.GetArounMineCount(this.GridPos.x, this.GridPos.y);
         //Debug.Log($"주변 지뢰갯수는 : {minecount}");
 
         int minecount = GameManager.GetInstance().GetArounMineCount(this.GridPos.x, this.GridPos.y);
         Debug.Log($"주변 지뢰갯수는 : {minecount}");
+
+        Sprite img = ResourceManager.Instance.GetMineCount(minecount);
+        GetComponent<SpriteRenderer>().sprite = img;
+
+
     }
 
 
