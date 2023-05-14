@@ -13,6 +13,40 @@ public class GameManager : MonoBehaviour
     public bool[,] ISMineArr = new bool[4,4];
     public BlockElement[,] AllBlockElementArr = null;
     
+
+
+    public bool ISMine(int p_y, int p_x )
+    {
+        if (p_x < 0 || p_x >= XSize)
+            return false;
+
+        if (p_y < 0 || p_y >= YSize)
+            return false;
+
+        return ISMineArr[p_y, p_x];
+    }
+
+    public int GetArounMineCount( int p_x, int p_y )
+    {
+        int outmine = 0;
+
+        // 상단 3개
+        if (ISMine(p_y + 1, p_x - 1) == true) ++outmine;
+        if (ISMine(p_y + 1, p_x - 0) == true) ++outmine;
+        if (ISMine(p_y + 1, p_x + 1) == true) ++outmine;
+
+        // 가운데 3개
+        if (ISMine(p_y + 0, p_x - 1) == true) ++outmine;
+        //if (ISMineArr[p_y + 1, p_x - 0] == true) ++outmine;
+        if (ISMine(p_y + 0, p_x + 1) == true) ++outmine;
+
+
+        if (ISMine(p_y - 1, p_x - 1) == true) ++outmine;
+        if (ISMine(p_y - 1, p_x - 0) == true) ++outmine;
+        if (ISMine(p_y - 1, p_x + 1) == true) ++outmine;
+
+        return outmine;
+    }
     
     protected void InitMineSeeting()
     {
@@ -60,6 +94,8 @@ public class GameManager : MonoBehaviour
 
                 cloneobj.name = $"Mine_[{x},{y}]";
                 cloneobj.SetGridPos(x, y);
+                cloneobj.m_ParentManager = this;
+
                 AllBlockElementArr[y, x] = cloneobj;
 
             }
@@ -71,8 +107,8 @@ public class GameManager : MonoBehaviour
     public SpriteRenderer m_TempRender = null;
     void UpdateClick()
     {
-        // 방법1
-        //return;
+        // 클릭 방법1
+        return;
 
         if( Input.GetMouseButtonDown(0) )
         {

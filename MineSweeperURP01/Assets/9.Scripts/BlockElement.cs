@@ -43,9 +43,16 @@ public class BlockElement : MonoBehaviour
         }
     }
 
+    public GameManager m_ParentManager = null;
     private void OnMouseDown()
     {
-        Debug.Log("블럭을 클릭했음");
+        Debug.Log($"레이로 부딪힌값 : {this.GridPos.x}, {this.GridPos.y}");
+        //Debug.Log("블럭을 클릭했음");
+
+
+        int minecount = m_ParentManager.GetArounMineCount(this.GridPos.x, this.GridPos.y);
+        Debug.Log($"주변 지뢰갯수는 : {minecount}");
+
     }
 
 
