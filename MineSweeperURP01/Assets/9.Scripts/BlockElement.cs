@@ -50,14 +50,20 @@ public class BlockElement : MonoBehaviour
         //Debug.Log("블럭을 클릭했음");
 
 
-        int minecount = m_ParentManager.GetArounMineCount(this.GridPos.x, this.GridPos.y);
-        Debug.Log($"주변 지뢰갯수는 : {minecount}");
+        //int minecount = m_ParentManager.GetArounMineCount(this.GridPos.x, this.GridPos.y);
+        //Debug.Log($"주변 지뢰갯수는 : {minecount}");
 
+        int minecount = GameManager.GetInstance().GetArounMineCount(this.GridPos.x, this.GridPos.y);
+        Debug.Log($"주변 지뢰갯수는 : {minecount}");
     }
 
 
 
+    private void Awake()
+    {
+        //m_ParentManager = GameObject.FindObjectOfType<GameManager>();
 
+    }
 
     void Start()
     {

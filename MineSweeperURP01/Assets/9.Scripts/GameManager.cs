@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingleTon_Mono<GameManager>
 {
+
+
     public BlockElement m_CloneBlockElement = null;
 
     public int XSize = 4;
@@ -13,7 +15,6 @@ public class GameManager : MonoBehaviour
     public bool[,] ISMineArr = new bool[4,4];
     public BlockElement[,] AllBlockElementArr = null;
     
-
 
     public bool ISMine(int p_y, int p_x )
     {
@@ -94,7 +95,7 @@ public class GameManager : MonoBehaviour
 
                 cloneobj.name = $"Mine_[{x},{y}]";
                 cloneobj.SetGridPos(x, y);
-                cloneobj.m_ParentManager = this;
+                //cloneobj.m_ParentManager = this;
 
                 AllBlockElementArr[y, x] = cloneobj;
 
