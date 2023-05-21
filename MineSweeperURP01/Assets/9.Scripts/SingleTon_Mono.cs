@@ -39,7 +39,7 @@ public class SingleTon_Mono<T> : MonoBehaviour where T : MonoBehaviour
             // 2번째 방식
             m_Instance = GameObject.FindObjectOfType<T>();
 
-            GameObject.DontDestroyOnLoad(m_Instance);
+            //GameObject.DontDestroyOnLoad(m_Instance);
         }
 
         return m_Instance;

@@ -90,6 +90,7 @@ public class BlockElement : MonoBehaviour
         {
             ISOpen = true;
             GetComponent<SpriteRenderer>().sprite = ResourceManager.Instance.GetBoomSprite();
+            GameManager.GetInstance().GameOver();
             return;
         }
 

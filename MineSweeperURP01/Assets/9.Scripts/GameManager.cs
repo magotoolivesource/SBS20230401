@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : SingleTon_Mono<GameManager>
 {
@@ -152,6 +153,7 @@ public class GameManager : SingleTon_Mono<GameManager>
 
     private void Awake()
     {
+        m_GameOverPanel.gameObject.SetActive(false);
 
         CreateMine();
 
@@ -196,7 +198,7 @@ public class GameManager : SingleTon_Mono<GameManager>
 
     public Vector3 MousePos = new Vector3();
     public Vector3 Wpos = new Vector3();
-    public SpriteRenderer m_TempRender = null;
+    //public SpriteRenderer m_TempRender = null;
     void UpdateClick()
     {
         // 오른버턴 누름
@@ -448,6 +450,21 @@ public class GameManager : SingleTon_Mono<GameManager>
                 break;
             }
         }
+    }
+
+
+    public void _On_RestartGame()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene( currentScene.buildIndex );
+    }
+
+    [SerializeField]
+    protected RectTransform m_GameOverPanel = null;
+    public void GameOver()
+    {
+        m_GameOverPanel.gameObject.SetActive(true);
+
     }
 
 
