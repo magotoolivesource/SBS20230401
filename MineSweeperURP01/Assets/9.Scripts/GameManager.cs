@@ -5,13 +5,18 @@ using UnityEngine;
 public class GameManager : SingleTon_Mono<GameManager>
 {
 
-
-    public BlockElement m_CloneBlockElement = null;
-
+    [Header("세팅용")]
     public int XSize = 4;
     public int YSize = 4;
+    public int MineCount = 3;
+
+
+    [Header("게임정보들")]
+    public BlockElement m_CloneBlockElement = null;
 
     public Camera LinkCam = null;
+
+
     public bool[,] ISMineArr = new bool[4,4];
     public BlockElement[,] AllBlockElementArr = null;
     
@@ -60,14 +65,74 @@ public class GameManager : SingleTon_Mono<GameManager>
         return outmine;
     }
     
+    protected void SetMineSetting01()
+    {
+        for (int i = 0; i < MineCount; i++)
+        {
+            int randx = Random.Range(0, XSize); // 1
+            int randy = Random.Range(0, YSize); // 1
+            ISMineArr[randy, randx] = true;
+        }
+    }
+
+    protected void SetMineSetting02()
+    {
+        int count = 0;
+        int test_whilecount = 0;
+        while (true)
+        {
+            ++test_whilecount;
+            int randx = Random.Range(0, XSize); // 2
+            int randy = Random.Range(0, YSize); // 1
+            if( ISMineArr[randy, randx] == false )
+            {
+                ISMineArr[randy, randx] = true;
+                count++;
+            }
+
+            if (count >= MineCount)
+                break;
+        }
+
+        Debug.Log($"총 while 갯수 :{test_whilecount} ");
+    }
+
+    protected void SetMineSetting03()
+    {
+        List<int> allgridindex = new List<int>();
+        for (int i = 0; i < XSize * YSize; i++)
+        {
+            allgridindex.Add(i);
+        }
+
+        for (int i = 0; i < MineCount; i++)
+        {
+            int randomidnex = Random.Range(0, allgridindex.Count);
+            int val = allgridindex[randomidnex];
+
+            int x = val % XSize;
+            int y = val / XSize;
+            ISMineArr[y, x] = true;
+
+            allgridindex.RemoveAt(randomidnex);
+        }
+    }
+
     protected void InitMineSeeting()
     {
         ISMineArr = new bool[YSize, XSize];
         
-        if ( true )
+        if ( false )
         {
             // 테스트 코드
             ISMineArr[2, 2] = true;
+        }
+        else
+        {
+            //SetMineSetting01();
+            //SetMineSetting02();
+            SetMineSetting03();
+
         }
 
 
@@ -133,45 +198,52 @@ public class GameManager : SingleTon_Mono<GameManager>
     public SpriteRenderer m_TempRender = null;
     void UpdateClick()
     {
-        // 클릭 방법1
-        return;
-
-        if( Input.GetMouseButtonDown(0) )
+        // 오른버턴 누름
+        if( Input.GetMouseButtonDown(1) )
         {
             MousePos = Input.mousePosition;
             Ray ray = LinkCam.ScreenPointToRay(MousePos);
 
             RaycastHit hitinfo;
-            if( Physics.Raycast(ray, out hitinfo, 999f) )
+            if (Physics.Raycast(ray, out hitinfo, 999f))
             {
-                //Debug.Log($"레이로 부딪힌값 : {hitinfo.transform.gameObject.name}");
-
                 BlockElement element = hitinfo.transform.GetComponent<BlockElement>();
-                if( element != null)
+                if( element != null )
                 {
-                    Debug.Log($"레이로 부딪힌값 : {element.GridPos.x}, {element.GridPos.y}");
+                    element.OnLeftMouseDown();
                 }
-                else
-                {
-                    Debug.Log($"잘못 눌렸습니다. ");
-                }
-                
             }
-            
+
         }
 
-        //if( Input.GetMouseButtonDown(0) )
+
+
+        //// 클릭 방법1
+        ////return;
+
+        //if( false
+        //    && Input.GetMouseButtonDown(0) )
         //{
-        //    // 마우스 위치
         //    MousePos = Input.mousePosition;
+        //    Ray ray = LinkCam.ScreenPointToRay(MousePos);
 
-        //    // 월드 좌표
-        //    Camera cam = LinkCam;
-        //    Wpos = cam.ScreenToWorldPoint(MousePos);
+        //    RaycastHit hitinfo;
+        //    if( Physics.Raycast(ray, out hitinfo, 999f) )
+        //    {
+        //        //Debug.Log($"레이로 부딪힌값 : {hitinfo.transform.gameObject.name}");
 
+        //        BlockElement element = hitinfo.transform.GetComponent<BlockElement>();
+        //        if( element != null)
+        //        {
+        //            Debug.Log($"레이로 부딪힌값 : {element.GridPos.x}, {element.GridPos.y}");
+        //        }
+        //        else
+        //        {
+        //            Debug.Log($"잘못 눌렸습니다. ");
+        //        }
 
-        //    Wpos.z = 0f;
-        //    m_TempRender.transform.position = Wpos;
+        //    }
+
         //}
 
     }
@@ -179,7 +251,7 @@ public class GameManager : SingleTon_Mono<GameManager>
 
 
 
-
+    // 재귀함수
     public void OpenAroundMine(int p_posx, int p_posy)
     {
         if (ISSizeOver(p_posx, p_posy))

@@ -11,6 +11,13 @@ public class ResourceManager : SingleTon_Mono<ResourceManager>
     [SerializeField]
     protected List<Sprite> m_QuestList = new List<Sprite>();
 
+    [SerializeField]
+    protected List<Sprite> m_RightClickResouece = new List<Sprite>();
+
+    public Sprite GetRightClick(E_RightClickType p_val)
+    {
+        return m_RightClickResouece[(int)p_val];
+    }
 
     public Sprite GetMineCount(int p_count)
     {

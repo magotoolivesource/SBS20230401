@@ -2,6 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum E_RightClickType : int
+{
+    Default = 0,
+    E_Flag = 1,
+    E_Question = 2,
+
+}
+
+
 public class BlockElement : MonoBehaviour
 {
     [SerializeField]
@@ -60,6 +70,17 @@ public class BlockElement : MonoBehaviour
 
         return minecount;
     }
+
+    public E_RightClickType RightClickCount = E_RightClickType.Default;
+    public void OnLeftMouseDown()
+    {
+        if (ISOpen)
+            return;
+
+        RightClickCount = (E_RightClickType)(((int)RightClickCount + 1) % 3);
+        GetComponent<SpriteRenderer>().sprite = ResourceManager.Instance.GetRightClick(RightClickCount);
+    }
+
     private void OnMouseDown()
     {
         Debug.Log($"·¹ÀÌ·Î ºÎµúÈù°ª : {this.GridPos.x}, {this.GridPos.y}");
