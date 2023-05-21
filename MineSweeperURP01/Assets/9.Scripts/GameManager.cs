@@ -16,6 +16,17 @@ public class GameManager : SingleTon_Mono<GameManager>
     public BlockElement[,] AllBlockElementArr = null;
     
 
+
+    public bool ISSizeOver(int p_y, int p_x)
+    {
+        if (p_x < 0 || p_x >= XSize)
+            return true;
+
+        if (p_y < 0 || p_y >= YSize)
+            return true;
+
+        return false;
+    }
     public bool ISMine(int p_y, int p_x )
     {
         if (p_x < 0 || p_x >= XSize)
@@ -56,11 +67,7 @@ public class GameManager : SingleTon_Mono<GameManager>
         if ( true )
         {
             // 테스트 코드
-            ISMineArr[1, 2] = true;
-            ISMineArr[1, 1] = true;
             ISMineArr[2, 2] = true;
-            ISMineArr[2, 3] = true;
-            ISMineArr[1, 3] = true;
         }
 
 
@@ -86,6 +93,8 @@ public class GameManager : SingleTon_Mono<GameManager>
 
         CenterCameraPos();
     }
+
+    // regex
 
     void CenterCameraPos()
     {
@@ -165,6 +174,131 @@ public class GameManager : SingleTon_Mono<GameManager>
         //    m_TempRender.transform.position = Wpos;
         //}
 
+    }
+
+
+
+
+
+    public void OpenAroundMine(int p_posx, int p_posy)
+    {
+        if (ISSizeOver(p_posx, p_posy))
+            return;
+
+        int yy = p_posy;
+        int xx = p_posx;
+
+
+        // 오른쪽
+        if ( !ISSizeOver(xx + 1, yy) )
+        {
+            if ( !AllBlockElementArr[yy, xx + 1].ISOpen )
+            {
+                int minecount = AllBlockElementArr[yy, xx + 1].SetMouseClick();
+
+                if (minecount == 0)
+                {
+                    OpenAroundMine(xx + 1, yy);
+                }
+            }
+        }
+
+        // 왼쪽
+        if (!ISSizeOver(xx - 1, yy))
+        {
+            if (!AllBlockElementArr[yy, xx - 1].ISOpen)
+            {
+                int minecount = AllBlockElementArr[yy, xx - 1].SetMouseClick();
+
+                if (minecount == 0)
+                {
+                    OpenAroundMine(xx - 1, yy);
+                }
+            }
+                
+        }
+
+
+        // 위쪽
+        if (!ISSizeOver(xx, yy + 1))
+        {
+            if (!AllBlockElementArr[yy + 1, xx].ISOpen)
+            {
+                int minecount = AllBlockElementArr[yy + 1, xx].SetMouseClick();
+
+                if (minecount == 0)
+                {
+                    OpenAroundMine(xx, yy + 1);
+                }
+            }
+        }
+
+
+        // 아래쪽
+        if (!ISSizeOver(xx, yy - 1))
+        {
+            if (!AllBlockElementArr[yy - 1, xx].ISOpen)
+            {
+                int minecount = AllBlockElementArr[yy - 1, xx].SetMouseClick();
+                if (minecount == 0)
+                {
+                    OpenAroundMine(xx, yy - 1);
+                }
+            }
+        }
+
+    }
+
+    public void OpenCrossMine( Vector2Int p_centerpos )
+    {
+        int yy = p_centerpos.y;
+        int xx = p_centerpos.x;
+
+
+        // 재귀함수 라는 방식으로 처리해야지 됩니다.
+
+
+        // 오른쪽
+        for (int x = p_centerpos.x + 1; x < XSize; x++)
+        {
+            //int minecount = GetArounMineCount(x, yy);
+            int minecount = AllBlockElementArr[yy, x].SetMouseClick();
+
+            if ( minecount > 0)
+            {
+                break;
+            }
+        }
+
+        // 왼쪽
+        for (int x = p_centerpos.x - 1; x >= 0; x--)
+        {
+            int minecount = AllBlockElementArr[yy, x].SetMouseClick();
+
+            if (minecount > 0)
+            {
+                break;
+            }
+        }
+
+        // 위 
+        for (int y = yy + 1; y < YSize; y++)
+        {
+            int minecount = AllBlockElementArr[y, xx].SetMouseClick();
+
+            if (minecount > 0)
+            {
+                break;
+            }
+        }
+
+        for (int y = yy - 1; y >= 0; y--)
+        {
+            if (AllBlockElementArr[y, xx].SetMouseClick() > 0)
+            {
+                break;
+            }
+        }
     }
 
 

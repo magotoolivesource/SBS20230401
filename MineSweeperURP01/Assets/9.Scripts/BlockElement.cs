@@ -44,18 +44,10 @@ public class BlockElement : MonoBehaviour
     }
 
     public GameManager m_ParentManager = null;
-    private void OnMouseDown()
+    public bool ISOpen = false;
+
+    public int SetMouseClick()
     {
-        Debug.Log($"레이로 부딪힌값 : {this.GridPos.x}, {this.GridPos.y}");
-        //Debug.Log("블럭을 클릭했음");
-
-        if( m_ISMine )
-        {
-            GetComponent<SpriteRenderer>().sprite = ResourceManager.Instance.GetBoomSprite();
-            return;
-        }
-
-
         //int minecount = m_ParentManager.GetArounMineCount(this.GridPos.x, this.GridPos.y);
         //Debug.Log($"주변 지뢰갯수는 : {minecount}");
 
@@ -64,7 +56,28 @@ public class BlockElement : MonoBehaviour
 
         Sprite img = ResourceManager.Instance.GetMineCount(minecount);
         GetComponent<SpriteRenderer>().sprite = img;
+        ISOpen = true;
 
+        return minecount;
+    }
+    private void OnMouseDown()
+    {
+        Debug.Log($"레이로 부딪힌값 : {this.GridPos.x}, {this.GridPos.y}");
+        //Debug.Log("블럭을 클릭했음");
+
+        if( m_ISMine )
+        {
+            ISOpen = true;
+            GetComponent<SpriteRenderer>().sprite = ResourceManager.Instance.GetBoomSprite();
+            return;
+        }
+
+        int minecount = SetMouseClick();
+
+        if ( minecount == 0 )
+        {
+            GameManager.GetInstance().OpenAroundMine(this.GridPos.x, this.GridPos.y);
+        }
 
     }
 

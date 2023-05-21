@@ -575,7 +575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CloneBlockElement: {fileID: 211598236897766813, guid: 39e5b1bbe79f4884aa3d697489052610, type: 3}
-  XSize: 15
+  XSize: 7
   YSize: 7
   LinkCam: {fileID: 519420031}
   MousePos: {x: 0, y: 0, z: 0}
