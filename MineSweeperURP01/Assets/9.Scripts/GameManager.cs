@@ -261,6 +261,7 @@ public class GameManager : SingleTon_Mono<GameManager>
         int xx = p_posx;
 
 
+
         // ¿À¸¥ÂÊ
         if ( !ISSizeOver(xx + 1, yy) )
         {
@@ -379,9 +380,9 @@ public class GameManager : SingleTon_Mono<GameManager>
         
     }
 
-    
     void Update()
     {
+
         UpdateClick();
 
     }
