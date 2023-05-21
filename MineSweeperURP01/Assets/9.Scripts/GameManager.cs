@@ -13,8 +13,9 @@ public class GameManager : SingleTon_Mono<GameManager>
 
     [Header("게임정보들")]
     public BlockElement m_CloneBlockElement = null;
-
     public Camera LinkCam = null;
+
+    public float m_OpenTimer = 1f;
 
 
     public bool[,] ISMineArr = new bool[4,4];
@@ -249,7 +250,80 @@ public class GameManager : SingleTon_Mono<GameManager>
     }
 
 
+    public IEnumerator OpenAroundMineCoroutinue(int p_posx, int p_posy)
+    {
+        if (ISSizeOver(p_posx, p_posy))
+        {
+            yield break;
+        }
 
+
+        yield return new WaitForSeconds(m_OpenTimer);
+
+        int yy = p_posy;
+        int xx = p_posx;
+
+
+
+        // 오른쪽
+        if (!ISSizeOver(xx + 1, yy))
+        {
+            if (!AllBlockElementArr[yy, xx + 1].ISOpen)
+            {
+                int minecount = AllBlockElementArr[yy, xx + 1].SetMouseClick();
+
+                if (minecount == 0)
+                {
+                    yield return OpenAroundMineCoroutinue(xx + 1, yy);
+                }
+            }
+        }
+
+        // 왼쪽
+        if (!ISSizeOver(xx - 1, yy))
+        {
+            if (!AllBlockElementArr[yy, xx - 1].ISOpen)
+            {
+                int minecount = AllBlockElementArr[yy, xx - 1].SetMouseClick();
+
+                if (minecount == 0)
+                {
+                    yield return OpenAroundMineCoroutinue(xx - 1, yy);
+                }
+            }
+
+        }
+
+
+        // 위쪽
+        if (!ISSizeOver(xx, yy + 1))
+        {
+            if (!AllBlockElementArr[yy + 1, xx].ISOpen)
+            {
+                int minecount = AllBlockElementArr[yy + 1, xx].SetMouseClick();
+
+                if (minecount == 0)
+                {
+                    yield return OpenAroundMineCoroutinue(xx, yy + 1);
+                }
+            }
+        }
+
+
+        // 아래쪽
+        if (!ISSizeOver(xx, yy - 1))
+        {
+            if (!AllBlockElementArr[yy - 1, xx].ISOpen)
+            {
+                int minecount = AllBlockElementArr[yy - 1, xx].SetMouseClick();
+                if (minecount == 0)
+                {
+                    yield return OpenAroundMineCoroutinue(xx, yy - 1);
+                }
+            }
+        }
+
+    }
 
     // 재귀함수
     public void OpenAroundMine(int p_posx, int p_posy)
@@ -321,6 +395,8 @@ public class GameManager : SingleTon_Mono<GameManager>
         }
 
     }
+
+    
 
     public void OpenCrossMine( Vector2Int p_centerpos )
     {

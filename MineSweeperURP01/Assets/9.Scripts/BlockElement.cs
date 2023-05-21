@@ -97,7 +97,9 @@ public class BlockElement : MonoBehaviour
 
         if ( minecount == 0 )
         {
-            GameManager.GetInstance().OpenAroundMine(this.GridPos.x, this.GridPos.y);
+            StartCoroutine(GameManager.GetInstance().OpenAroundMineCoroutinue(this.GridPos.x, this.GridPos.y));
+            ;
+            
         }
 
     }

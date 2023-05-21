@@ -1171,11 +1171,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d84b9addb4457d04bb915e564cb0a2d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  XSize: 4
-  YSize: 4
+  XSize: 7
+  YSize: 7
   MineCount: 3
   m_CloneBlockElement: {fileID: 211598236897766813, guid: 39e5b1bbe79f4884aa3d697489052610, type: 3}
   LinkCam: {fileID: 519420031}
+  m_OpenTimer: 0.1
   MousePos: {x: 0, y: 0, z: 0}
   Wpos: {x: 0, y: 0, z: 0}
   m_TempRender: {fileID: 0}
