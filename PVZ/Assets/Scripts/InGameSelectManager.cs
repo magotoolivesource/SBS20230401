@@ -65,16 +65,31 @@ public class InGameSelectManager : SingleTon_Mono<InGameSelectManager>
         //        break;
         //}
 
-        string loadpath = $"Temp_{SelectPlantType}";
 
+        
+
+        string loadpath = $"Temp_{SelectPlantType}";
         // Resources 폴더가 있어야지됨, 경로명과 이름만 입력한다. 확장자는 사용하지 않는다
         GameObject resourceobj = Resources.Load(loadpath) as GameObject;
+
+
+        // 코인 정보
+        PlantsInfoData infodata = resourceobj.GetComponent<PlantsInfoData>();
+        int coin = InGamePlayDatas.GetInstance().GetCoin();
+        if (coin < infodata.UseCoin )
+        {
+            Debug.Log("현재 금액이 부족합니다.");
+            return null;
+        }
+
 
         GameObject cloneobj = null;
         if ( resourceobj != null )
         {
             cloneobj = GameObject.Instantiate(resourceobj);
         }
+
+        InGamePlayDatas.GetInstance().AddPlayerCoin(-infodata.UseCoin);
 
         return cloneobj;
     }

@@ -11,6 +11,7 @@ public class SolarCoin : MonoBehaviour
     {
         Debug.Log("코인 1개 채워짐");
 
+        InGamePlayDatas.GetInstance().AddPlayerCoin(1);
 
         GameObject.Destroy(this.gameObject);
     }

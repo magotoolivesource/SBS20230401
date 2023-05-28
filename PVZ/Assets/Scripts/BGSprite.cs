@@ -15,14 +15,17 @@ public class BGSprite : MonoBehaviour
             return;
         }
 
-
         //m_LinkGameObj = InGameSelectManager.GetInstance().ClonePlant();
         //m_LinkGameObj.transform.position = transform.position;
         ////m_LinkGameObj.name = "복사식물_";
 
         // 방법 2번
         m_LinkGameObj = InGameSelectManager.GetInstance().ClonePlantResourceData();
-        m_LinkGameObj.transform.position = transform.position;
+        if( m_LinkGameObj != null )
+        {
+            m_LinkGameObj.transform.position = transform.position;
+        }
+        
 
 
     }

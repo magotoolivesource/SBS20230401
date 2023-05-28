@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3714279375033195104}
   - component: {fileID: 3714279375033195105}
   - component: {fileID: 4147147735511971828}
+  - component: {fileID: 3046841934417117755}
   m_Layer: 0
   m_Name: Temp_SUNFollower
   m_TagString: Untagged
@@ -98,3 +99,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EventDelaySec: 1
+  BuyCoin: 5
+  range: 2
+--- !u!114 &3046841934417117755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714279375033195106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 827464c414c0ce943bcc18e5bc4cf7a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UseCoin: 5
