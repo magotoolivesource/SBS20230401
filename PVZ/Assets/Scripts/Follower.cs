@@ -24,7 +24,7 @@ public class Follower : MonoBehaviour
     protected void CreateCoin()
     {
         // 
-        Debug.Log("코인 1개 생성");
+        //Debug.Log("코인 1개 생성");
 
         GameObject obj = Resources.Load("Solar") as GameObject;
         GameObject clonecoin = GameObject.Instantiate(obj);

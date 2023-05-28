@@ -22,7 +22,8 @@ public class InGameManager : MonoBehaviour
             for (int x = 0; x < WSize; x++)
             {
                 BGSprite cloneSprite = GameObject.Instantiate(m_CloneBGSprite, this.transform);
-                cloneSprite.transform.localPosition = new Vector3(BlockSize.x * x, BlockSize.y * y, 0f);
+                cloneSprite.transform.localPosition = new Vector3(BlockSize.x * x, BlockSize.y * y, 5f);
+
                 cloneSprite.name = $"CloneBG_[{x},{y}]";
                 
                 m_AllBGSpitre[y, x] = cloneSprite;

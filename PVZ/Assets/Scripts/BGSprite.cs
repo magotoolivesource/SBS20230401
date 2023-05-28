@@ -10,6 +10,11 @@ public class BGSprite : MonoBehaviour
     {
         Debug.Log($"클릭 적용됨 : {this.name} ");
 
+        if ( m_LinkGameObj != null )
+        {
+            return;
+        }
+
 
         //m_LinkGameObj = InGameSelectManager.GetInstance().ClonePlant();
         //m_LinkGameObj.transform.position = transform.position;
