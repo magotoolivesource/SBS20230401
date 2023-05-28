@@ -8,16 +8,17 @@ public class BGSprite : MonoBehaviour
     protected GameObject m_LinkGameObj = null;
     private void OnMouseDown()
     {
-        Debug.Log($"Å¬¸¯ Àû¿ëµÊ : {this.name} ");
+        Debug.Log($"í´ë¦­ ì ìš©ë¨ : {this.name} ");
 
 
         //m_LinkGameObj = InGameSelectManager.GetInstance().ClonePlant();
         //m_LinkGameObj.transform.position = transform.position;
-        ////m_LinkGameObj.name = "º¹»ç½Ä¹°_";
+        ////m_LinkGameObj.name = "ë³µì‚¬ì‹ë¬¼_";
 
-        // ¹æ¹ı 2¹ø
+        // ë°©ë²• 2ë²ˆ
         m_LinkGameObj = InGameSelectManager.GetInstance().ClonePlantResourceData();
         m_LinkGameObj.transform.position = transform.position;
+
 
     }
 

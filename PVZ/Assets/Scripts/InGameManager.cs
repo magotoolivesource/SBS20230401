@@ -5,6 +5,7 @@ using UnityEngine;
 public class InGameManager : MonoBehaviour
 {
 
+
     public int WSize = 8;
     public int HSize = 5;
 

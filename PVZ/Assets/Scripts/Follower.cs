@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Follower : MonoBehaviour
 {
-    // �عٶ��
+    // 해바라기
 
 
     public float EventDelaySec = 1f;
@@ -24,6 +24,7 @@ public class Follower : MonoBehaviour
     protected void CreateCoin()
     {
         // 
+
 
     }
 

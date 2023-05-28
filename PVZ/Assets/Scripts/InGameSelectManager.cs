@@ -5,10 +5,10 @@ using UnityEngine;
 
 public enum E_PlantType
 {
-    SUNFollower, // ÄÚÀÎ 1°³Â¥¸® ÇØ¹Ù¸®±â
-    //DoubleSubFolloer, // ÄÚÀÎ 2°³Â¥¸® ÇØ¹Ù¸®±â
+    SUNFollower, // ì½”ì¸ 1ê°œì§œë¦¬ í•´ë°”ë¦¬ê¸°
+    //DoubleSubFolloer, // ì½”ì¸ 2ê°œì§œë¦¬ í•´ë°”ë¦¬ê¸°
 
-    ShotFollwer, // ¹ß»çÃ¼ ½Ä¹°
+    ShotFollwer, // ë°œì‚¬ì²´ ì‹ë¬¼
 
     MAX,
 }
@@ -18,7 +18,7 @@ public class InGameSelectManager : SingleTon_Mono<InGameSelectManager>
     public E_PlantType SelectPlantType = E_PlantType.MAX;
 
 
-    #region ½Ä¹° »ı¼º ¹æ¹ı1
+    #region ì‹ë¬¼ ìƒì„± ë°©ë²•1
 
 
     // 
@@ -46,7 +46,7 @@ public class InGameSelectManager : SingleTon_Mono<InGameSelectManager>
 
     #endregion
 
-    #region ½Ä¹° »ı¼º ¹æ¹ı2
+    #region ì‹ë¬¼ ìƒì„± ë°©ë²•2
     public GameObject ClonePlantResourceData()
     {
 
@@ -67,7 +67,7 @@ public class InGameSelectManager : SingleTon_Mono<InGameSelectManager>
 
         string loadpath = $"Temp_{SelectPlantType}";
 
-        // Resources Æú´õ°¡ ÀÖ¾î¾ßÁöµÊ, °æ·Î¸í°ú ÀÌ¸§¸¸ ÀÔ·ÂÇÑ´Ù. È®ÀåÀÚ´Â »ç¿ëÇÏÁö ¾Ê´Â´Ù
+        // Resources í´ë”ê°€ ìˆì–´ì•¼ì§€ë¨, ê²½ë¡œëª…ê³¼ ì´ë¦„ë§Œ ì…ë ¥í•œë‹¤. í™•ì¥ìëŠ” ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤
         GameObject resourceobj = Resources.Load(loadpath) as GameObject;
 
         GameObject cloneobj = null;

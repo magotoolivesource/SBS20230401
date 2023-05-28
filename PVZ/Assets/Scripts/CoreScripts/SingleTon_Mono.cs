@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class SingleTon_Mono<T> : MonoBehaviour where T : MonoBehaviour
 {
 
@@ -14,12 +13,12 @@ public class SingleTon_Mono<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (m_Instance == null)
             {
-                ////1 Á÷Á¢ ÄÚµå¸¦ ÀÌ¿ëÇØ¼­ »ı¼º ÇØ¼­ °¡¸£Å°µµ·Ï ÇÏ´Â ¹æ¹ı
+                ////1 ì§ì ‘ ì½”ë“œë¥¼ ì´ìš©í•´ì„œ ìƒì„± í•´ì„œ ê°€ë¥´í‚¤ë„ë¡ í•˜ëŠ” ë°©ë²•
                 //GameObject obj = new GameObject();
                 //Test_SingleTon.m_Instance = obj.AddComponent<Test_SingleTon>();
 
 
-                // 2¹øÂ° ¹æ½Ä
+                // 2ë²ˆì§¸ ë°©ì‹
                 m_Instance = GameObject.FindObjectOfType<T>();
                 //GameObject.DontDestroyOnLoad(m_Instance);
             }
@@ -31,12 +30,12 @@ public class SingleTon_Mono<T> : MonoBehaviour where T : MonoBehaviour
     {
         if ( m_Instance == null)
         {
-            ////1 Á÷Á¢ ÄÚµå¸¦ ÀÌ¿ëÇØ¼­ »ı¼º ÇØ¼­ °¡¸£Å°µµ·Ï ÇÏ´Â ¹æ¹ı
+            ////1 ì§ì ‘ ì½”ë“œë¥¼ ì´ìš©í•´ì„œ ìƒì„± í•´ì„œ ê°€ë¥´í‚¤ë„ë¡ í•˜ëŠ” ë°©ë²•
             //GameObject obj = new GameObject();
             //Test_SingleTon.m_Instance = obj.AddComponent<Test_SingleTon>();
 
 
-            // 2¹øÂ° ¹æ½Ä
+            // 2ë²ˆì§¸ ë°©ì‹
             m_Instance = GameObject.FindObjectOfType<T>();
 
             //GameObject.DontDestroyOnLoad(m_Instance);
