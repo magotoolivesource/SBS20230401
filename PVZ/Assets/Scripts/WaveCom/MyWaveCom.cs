@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
+// 상속
+// virtual, overrider
+// interface, abstract
+// tamplete
+
+
+
 [System.Serializable]
 public class WaveInfoData
 {
@@ -40,7 +48,14 @@ public class MyWaveCom : MonoBehaviour
 
     void CreateZombi(string p_resourcezombi)
     {
+
+        //GameObject zombi = (GameObject)Resources.Load($"Zombi/{p_resourcezombi}");
+
+
         Zombi zombi = Resources.Load<Zombi>( $"Zombi/{p_resourcezombi}" );
+        //Zombi_ConHead zombi = Resources.Load<Zombi_ConHead>($"Zombi/{p_resourcezombi}");
+
+
         Zombi clonezombi = GameObject.Instantiate(zombi);
         clonezombi.transform.position = transform.position;
 

@@ -436,6 +436,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1001032070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1001032072}
+  - component: {fileID: 1001032071}
+  m_Layer: 0
+  m_Name: ConHeadZombi
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1001032071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001032070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 181e8d9220f407d46a841902df5164ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 1
+  HP: 3
+  m_BaseSprite: {fileID: 0}
+--- !u!4 &1001032072
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001032070}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.08785744, y: -0.40201333, z: 0.048596498}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1181469783
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,7 +499,7 @@ GameObject:
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1181469784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,7 +628,7 @@ GameObject:
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1302945953
 Transform:
   m_ObjectHideFlags: 0
@@ -629,6 +676,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UseCoin: 0
+--- !u!1001 &1412210287
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8090940038326958114, guid: 377aea1c338c2d1488b82b877d7080d8, type: 3}
+      propertyPath: m_Name
+      value: BaseZombi 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090940038326958116, guid: 377aea1c338c2d1488b82b877d7080d8, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090940038326958116, guid: 377aea1c338c2d1488b82b877d7080d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090940038326958116, guid: 377aea1c338c2d1488b82b877d7080d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090940038326958116, guid: 377aea1c338c2d1488b82b877d7080d8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090940038326958116, guid: 377aea1c338c2d1488b82b877d7080d8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090940038326958116, guid: 377aea1c338c2d1488b82b877d7080d8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090940038326958116, guid: 377aea1c338c2d1488b82b877d7080d8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090940038326958116, guid: 377aea1c338c2d1488b82b877d7080d8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090940038326958116, guid: 377aea1c338c2d1488b82b877d7080d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090940038326958116, guid: 377aea1c338c2d1488b82b877d7080d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8090940038326958116, guid: 377aea1c338c2d1488b82b877d7080d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 377aea1c338c2d1488b82b877d7080d8, type: 3}
 --- !u!1 &1671790703
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +749,7 @@ GameObject:
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1671790704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -707,7 +811,7 @@ MonoBehaviour:
   m_WaveInfoList:
   - DelaySec: 1
     CloneZombiResourceList:
-    - BaseZombi
+    - BaseZombi 1
   - DelaySec: 0.2
     CloneZombiResourceList:
     - BaseZombi
