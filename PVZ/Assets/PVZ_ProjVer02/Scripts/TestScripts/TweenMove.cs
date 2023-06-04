@@ -54,8 +54,8 @@ public class TweenMove : MonoBehaviour
         seu.Insert(1f, render.DOFade(0f, 1f).SetLoops(2, LoopType.Yoyo) );
         seu.Insert(0.4f, transform.DORotate(new Vector3(0f, 0f, 720f), 3, RotateMode.WorldAxisAdd) );
 
-        seu.Play();
-        seu.Pause();
+        //seu.Play();
+        //seu.Pause();
 
 
         //transform.DOMove( new Vector3(4, 2, 0) , 2f)
