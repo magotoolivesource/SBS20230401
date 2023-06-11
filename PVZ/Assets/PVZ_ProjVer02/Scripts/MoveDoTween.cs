@@ -14,6 +14,7 @@ public class MoveDoTween : MonoBehaviour
             .SetEase(CurrentEase)
             .OnComplete( OnCompleteFN ) ;
 
+
     }
 
     protected void OnCompleteFN()

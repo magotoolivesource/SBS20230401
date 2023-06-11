@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6019132907755738022}
   - component: {fileID: 6019132907755738021}
   - component: {fileID: 6019132907755738020}
-  - component: {fileID: 6019132908633644492}
+  - component: {fileID: 7336397314859495130}
   m_Layer: 0
-  m_Name: Sun
+  m_Name: FallSun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,7 +93,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.39
---- !u!114 &6019132908633644492
+--- !u!114 &7336397314859495130
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,12 +102,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6019132907755738017}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd1703bebb3d5cf4f9b89e5dac890628, type: 3}
+  m_Script: {fileID: 11500000, guid: 8eea821f019763e43a4c521509a1abd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DurationSec: 1
-  MinRange: 0.3
-  RandomRange: 2
+  MinX: -8
+  MaxX: 5
+  DurationSec: 3
   Easetype: 1
 --- !u!1 &6019132908257594450
 GameObject:

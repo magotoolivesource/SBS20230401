@@ -176,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 100
   DurationSec: 2
+  looptime: 3
   DamageColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &357185723
 MonoBehaviour:
@@ -510,7 +511,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1981866304
 GameObject:
@@ -541,7 +542,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2074413060
 GameObject:
@@ -553,7 +554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2074413063}
   - component: {fileID: 2074413062}
-  - component: {fileID: 2074413061}
+  - component: {fileID: 2074413064}
   m_Layer: 0
   m_Name: "\uBAA8\uB378"
   m_TagString: Untagged
@@ -561,21 +562,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2074413061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2074413060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 979f9b75a7a28904a96a8248b2ddfc62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_CurrentEase: 1
-  m_Target: {fileID: 1981866305}
-  m_DrutaionSec: 1
 --- !u!212 &2074413062
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -617,7 +603,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a84919b02b93a5b4eb5a2b0ee2c803f3, type: 3}
+  m_Sprite: {fileID: -2086033278, guid: d9466fecba0f1544a99c899c1a51345c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -636,13 +622,52 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074413060}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.31, y: -0.7, z: -0.5}
+  m_LocalPosition: {x: -0.89, y: -2.84, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2074413064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074413060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce3e2f1b65db20445b544ba2908057c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rot: {x: 0, y: 0, z: 360}
+  DurationSec: 3
+  RotMode: 1
+  CurrCurver:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2123626673
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,7 +762,7 @@ RectTransform:
   m_Children:
   - {fileID: 357185721}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

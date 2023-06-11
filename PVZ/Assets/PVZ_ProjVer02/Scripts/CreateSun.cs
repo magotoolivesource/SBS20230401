@@ -31,9 +31,9 @@ public class CreateSun : MonoBehaviour
         //    , transform.position + randompos
         //    , 2f);
 
-        clonesun.GetComponent<MoveDoTween>().Init( transform.position
-            , transform.position + randompos
-            , 2f );
+        //clonesun.GetComponent<MoveDoTween>().Init( transform.position
+        //    , transform.position + randompos
+        //    , 2f );
 
     }
 
