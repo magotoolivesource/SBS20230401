@@ -13,21 +13,42 @@ public class DelayEventCom : MonoBehaviour
     public float DelaySec = 1f;
 
 
+    //public bool ISRepeat = false;
+    [Tooltip("0이하면 무한히 실행함")]
+    public int RepeatCount = 1; // 무한으로 진행 
+
+
     [Header("[확인용]")]
     [SerializeField]
     protected float m_CurrentSec = 0f;
+    protected int m_CurrentRepeatCount = 0;
 
     void Start()
     {
-        m_CurrentSec = DelaySec;
+        ResetCurrentSec();
+        SetRepeatCount(RepeatCount);
     }
     
+    public void SetRepeatCount(int p_repeatcount)
+    {
+        RepeatCount = p_repeatcount;
+        m_CurrentRepeatCount = RepeatCount;
+    }
+    void ResetCurrentSec()
+    {
+        m_CurrentSec = DelaySec;
+    }
+
     public void CallFN()
     {
         //GameObject.Destroy(this.gameObject);
         if(onDelayCallFN != null)
         {
             onDelayCallFN.Invoke();
+            
+            {
+                ResetCurrentSec();
+            }
         }
     }
 
@@ -36,7 +57,18 @@ public class DelayEventCom : MonoBehaviour
         m_CurrentSec -= Time.deltaTime;
         if (m_CurrentSec <= 0f)
         {
-            CallFN();
+            if (RepeatCount <= 0)
+            {
+                CallFN();
+            }
+            else
+            {
+                if(m_CurrentRepeatCount > 0)
+                {
+                    CallFN();
+                }
+            }
+            --m_CurrentRepeatCount;
         }
 
     }
