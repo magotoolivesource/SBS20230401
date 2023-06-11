@@ -2,42 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreateSun : MonoBehaviour
-{
 
+
+[System.Serializable]
+public class StateSunData
+{
     public float DealySec = 3f;
     public float SunCreateDistance = 2f;
+    public string LoadPath = "Prefabs/Sun";
+}
 
 
-    IEnumerator StartDelayCortoutine()
+public class CreateSun : MonoBehaviour
+{
+    public StateSunData m_StateData;
+
+
+    protected IEnumerator StartDelayCortoutine()
     {
         while(true)
         {
-            yield return new WaitForSeconds(DealySec);
+            yield return new WaitForSeconds(m_StateData.DealySec);
             CreateSunFN();
         }
     }
 
-    void CreateSunFN()
+
+    protected virtual string LoadPath
     {
-        SelectSun resourcesum = Resources.Load<SelectSun>("Prefabs/Sun");
+        get { return m_StateData.LoadPath; }
+    }
+
+    protected virtual void CreateSunFN()
+    {
+        SelectSun resourcesum = Resources.Load<SelectSun>(LoadPath);
 
         SelectSun clonesun = GameObject.Instantiate(resourcesum);
         clonesun.transform.position = transform.position;
 
-
-        Vector3 randompos = Random.insideUnitCircle * SunCreateDistance;
-        //clonesun.GetComponent<MoveTween>().InitMove(transform.position
-        //    , transform.position + randompos
-        //    , 2f);
-
-        //clonesun.GetComponent<MoveDoTween>().Init( transform.position
-        //    , transform.position + randompos
-        //    , 2f );
-
+        Vector3 randompos = Random.insideUnitCircle * m_StateData.SunCreateDistance;
     }
 
-    void Start()
+    protected void Start()
     {
         StartCoroutine( StartDelayCortoutine() );
     }

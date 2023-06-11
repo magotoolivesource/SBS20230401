@@ -64,6 +64,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   DelaySec: 4
+  RepeatCount: 1
   m_CurrentSec: 0
 --- !u!114 &6019132907755738021
 MonoBehaviour:

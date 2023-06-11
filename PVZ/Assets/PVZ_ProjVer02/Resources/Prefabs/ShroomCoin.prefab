@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6019132907755738022}
   - component: {fileID: 6019132907755738021}
   - component: {fileID: 6019132907755738020}
-  - component: {fileID: 7336397314859495130}
+  - component: {fileID: 6019132908633644492}
   m_Layer: 0
-  m_Name: FallSun
+  m_Name: ShroomCoin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +94,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.39
---- !u!114 &7336397314859495130
+--- !u!114 &6019132908633644492
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,37 +103,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6019132907755738017}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eea821f019763e43a4c521509a1abd5, type: 3}
+  m_Script: {fileID: 11500000, guid: cd1703bebb3d5cf4f9b89e5dac890628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinX: -8
-  MaxX: 5
-  DurationSec: 3
+  DurationSec: 1
+  MinRange: 0.3
+  RandomRange: 2
   Easetype: 1
-  AniCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &6019132908257594450
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +183,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a84919b02b93a5b4eb5a2b0ee2c803f3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 02800fb9cff14da47a04572790384d8b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
