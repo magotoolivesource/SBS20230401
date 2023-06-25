@@ -9,6 +9,12 @@ public class Viking : MonoBehaviour
     public float MoveSpeed = 1f;
     public bool ISMove = true;
 
+
+    [Header("[찾기범위]")]
+    public float SearchingRange = 2f;
+    public Tower SearchingTarget = null;
+
+
     // 공격 정보
     [Header("[공격범위들]")]
     public float AttackRange = 1f;
@@ -25,6 +31,7 @@ public class Viking : MonoBehaviour
     protected float m_RemineAttackSec = 0f;
     [SerializeField]
     protected Coroutine m_AttackCoroutine = null;
+    protected float m_AttackStopSec = 0f;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -58,6 +65,7 @@ public class Viking : MonoBehaviour
             {
                 StopCoroutine(m_AttackCoroutine);
                 m_AttackCoroutine = null;
+                m_AttackStopSec = Time.time;
             }
             
             
@@ -103,11 +111,18 @@ public class Viking : MonoBehaviour
         }
     }
 
+
+    [SerializeField]
+    protected float m_CoroutineSec = 0f;
     IEnumerator AttackCoroutinue()
     {
-        while(true)
+        m_RemineAttackSec = m_RemineAttackSec - ( Time.time - m_AttackStopSec);
+        m_CoroutineSec = m_RemineAttackSec;
+
+        while (true)
         {
-            if(m_RemineAttackSec <= 0)
+            m_RemineAttackSec -= Time.deltaTime;
+            if (m_RemineAttackSec <= 0)
             {
                 SetAttack();
                 m_RemineAttackSec = AttackDealySec;
@@ -115,8 +130,6 @@ public class Viking : MonoBehaviour
 
             yield return null;
         }
-
-
     }
 
 
@@ -143,7 +156,7 @@ public class Viking : MonoBehaviour
 
     void Update()
     {
-        m_RemineAttackSec -= Time.deltaTime;
+        //m_RemineAttackSec -= Time.deltaTime;
         UpdateDirectTarget();
 
 
