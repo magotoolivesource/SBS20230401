@@ -23,7 +23,15 @@ public class Viking : MonoBehaviour
     public float Atk = 1f;
     public Tower AttackTarget = null;
     public bool ISAttack = false;
-    
+
+
+
+
+    [SerializeField]
+    protected DelayEventCom m_LinkDelayEventCom = null;
+
+    [SerializeField]
+    protected DelayEventCom m_LinkDelayEventCom2 = null;
 
 
     [Header("[확인용값들]")]
@@ -35,8 +43,12 @@ public class Viking : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //_MyOn_TriggerEnter(other);
     }
+    private void OnTriggerExit(Collider other)
+    {
+    }
+
+
 
     public void _MyOn_RangeTriggerEnter(Collider other)
     {
@@ -48,7 +60,6 @@ public class Viking : MonoBehaviour
         Debug.Log($"범위 해제 : {this.name}, {other.transform.name} ");
     }
 
-
     public void _MyOn_AttackTriggerEnter(Collider other)
     {
         Debug.Log($"충돌됨 : {this.name}, {other.transform.name} ");
@@ -58,11 +69,19 @@ public class Viking : MonoBehaviour
             return;
         }
 
-
         ISMove = false;
         ISAttack = true;
         AttackTarget = tower;
-        m_AttackCoroutine = StartCoroutine(AttackCoroutinue());
+        //m_AttackCoroutine = StartCoroutine(AttackCoroutinue());
+
+
+        m_LinkDelayEventCom.InitSettings(5f);
+        m_LinkDelayEventCom.DelayCallFN.AddListener( SetAttackCall );
+        m_LinkDelayEventCom.DelayCallCourtinue();
+        //m_LinkDelayEventCom.enabled = true;
+
+        m_LinkDelayEventCom2.DelayCallFN.AddListener(SetAttackCall);
+        m_LinkDelayEventCom2.DelayCallCourtinue();
     }
 
     public void _MyOn_AttackTriggerExit(Collider other)
@@ -80,18 +99,27 @@ public class Viking : MonoBehaviour
 
             if (m_AttackCoroutine != null)
             {
-                StopCoroutine(m_AttackCoroutine);
-                m_AttackCoroutine = null;
-                m_AttackStopSec = Time.time;
+                //StopCoroutine(m_AttackCoroutine);
+                //m_AttackCoroutine = null;
+                //m_AttackStopSec = Time.time;
+
+
+                m_LinkDelayEventCom.DelayCallFN.RemoveListener(SetAttackCall);
+                m_LinkDelayEventCom.DelayStopCotrouine();
+
+                m_LinkDelayEventCom2.DelayCallFN.RemoveListener(SetAttackCall);
+                m_LinkDelayEventCom2.DelayStopCotrouine();
             }
 
 
         }
     }
 
-    private void OnTriggerExit(Collider other)
+
+    void SetAttackCall( DelayEventCom p_com )
     {
-        
+        Debug.Log($"공격처리 : {p_com.CallTypeName }, {p_com.DelaySec} ");
+
     }
 
     [SerializeField]
@@ -161,7 +189,7 @@ public class Viking : MonoBehaviour
             m_RemineAttackSec -= Time.deltaTime;
             if (m_RemineAttackSec <= 0)
             {
-                SetAttack();
+                //SetAttack();
                 m_RemineAttackSec = AttackDealySec;
             }
 
