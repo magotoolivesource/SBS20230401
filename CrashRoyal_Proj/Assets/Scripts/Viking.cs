@@ -35,6 +35,22 @@ public class Viking : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //_MyOn_TriggerEnter(other);
+    }
+
+    public void _MyOn_RangeTriggerEnter(Collider other)
+    {
+        Debug.Log($"범위 : {this.name}, {other.transform.name} ");
+    }
+
+    public void _MyOn_RangeTriggerExit(Collider other)
+    {
+        Debug.Log($"범위 해제 : {this.name}, {other.transform.name} ");
+    }
+
+
+    public void _MyOn_AttackTriggerEnter(Collider other)
+    {
         Debug.Log($"충돌됨 : {this.name}, {other.transform.name} ");
         Tower tower = other.GetComponent<Tower>();
         if (tower == null)
@@ -46,36 +62,50 @@ public class Viking : MonoBehaviour
         ISMove = false;
         ISAttack = true;
         AttackTarget = tower;
-        m_AttackCoroutine = StartCoroutine( AttackCoroutinue() );
+        m_AttackCoroutine = StartCoroutine(AttackCoroutinue());
     }
 
-    private void OnTriggerExit(Collider other)
+    public void _MyOn_AttackTriggerExit(Collider other)
     {
         Debug.Log($"빠져나감 : {this.name}, {other.transform.name} ");
-        if ( AttackTarget == null )
+        if (AttackTarget == null)
             return;
 
         Tower tower = other.GetComponent<Tower>();
-        if( tower == AttackTarget )
+        if (tower == AttackTarget)
         {
             ISAttack = false;
             AttackTarget = null;
             ISMove = true;
 
-            if(m_AttackCoroutine != null)
+            if (m_AttackCoroutine != null)
             {
                 StopCoroutine(m_AttackCoroutine);
                 m_AttackCoroutine = null;
                 m_AttackStopSec = Time.time;
             }
-            
-            
+
+
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        
+    }
+
+    [SerializeField]
+    protected RangeTrigger m_AttackTrigger = null;
     void InitAttackRange()
     {
         //GetComponent<SphereCollider>().radius = AttackRange;
+
+        //GetComponentsInChildren<RangeTrigger>();
+
+        m_AttackTrigger.TriggerEnterEvent.AddListener(_MyOn_AttackTriggerEnter);
+
+
+
 
     }
 
