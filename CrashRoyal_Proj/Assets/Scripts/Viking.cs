@@ -23,7 +23,8 @@ public class Viking : MonoBehaviour
     [Header("[확인용값들]")]
     [SerializeField]
     protected float m_RemineAttackSec = 0f;
-
+    [SerializeField]
+    protected Coroutine m_AttackCoroutine = null;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -37,6 +38,7 @@ public class Viking : MonoBehaviour
         ISMove = false;
         ISAttack = true;
         AttackTarget = tower;
+        m_AttackCoroutine = StartCoroutine( AttackCoroutinue() );
     }
 
     private void OnTriggerExit(Collider other)
@@ -51,11 +53,16 @@ public class Viking : MonoBehaviour
             ISAttack = false;
             AttackTarget = null;
             ISMove = true;
+
+            if(m_AttackCoroutine != null)
+            {
+                StopCoroutine(m_AttackCoroutine);
+                m_AttackCoroutine = null;
+            }
+            
+            
         }
     }
-
-
-
 
 
 
@@ -96,9 +103,26 @@ public class Viking : MonoBehaviour
         }
     }
 
+    IEnumerator AttackCoroutinue()
+    {
+        while(true)
+        {
+            if(m_RemineAttackSec <= 0)
+            {
+                SetAttack();
+                m_RemineAttackSec = AttackDealySec;
+            }
+
+            yield return null;
+        }
+
+
+    }
+
+
     void UpdateAttack()
     {
-        m_RemineAttackSec -= Time.deltaTime;
+        
 
         if ( ISAttack == false )
             return;
@@ -119,8 +143,11 @@ public class Viking : MonoBehaviour
 
     void Update()
     {
+        m_RemineAttackSec -= Time.deltaTime;
         UpdateDirectTarget();
-        UpdateAttack();
+
+
+        //UpdateAttack();
 
         //UpdateAgent();
 
