@@ -7,6 +7,57 @@ public class Viking : MonoBehaviour
 {
     public Transform Target = null;
     public float MoveSpeed = 1f;
+    public bool ISMove = true;
+
+    // 공격 정보
+    [Header("[공격범위들]")]
+    public float AttackRange = 1f;
+    public float AttackDealySec = 1f;
+    //public float AttackingDelaySec = 0.5f;
+    public float Atk = 1f;
+    public Tower AttackTarget = null;
+    public bool ISAttack = false;
+    
+
+
+    [Header("[확인용값들]")]
+    [SerializeField]
+    protected float m_RemineAttackSec = 0f;
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log($"충돌됨 : {this.name}, {other.transform.name} ");
+        Tower tower = other.GetComponent<Tower>();
+        if (tower == null)
+        {
+            return;
+        }
+
+        ISMove = false;
+        ISAttack = true;
+        AttackTarget = tower;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log($"빠져나감 : {this.name}, {other.transform.name} ");
+        if ( AttackTarget == null )
+            return;
+
+        Tower tower = other.GetComponent<Tower>();
+        if( tower == AttackTarget )
+        {
+            ISAttack = false;
+            AttackTarget = null;
+            ISMove = true;
+        }
+    }
+
+
+
+
+
 
     void Start()
     {
@@ -29,6 +80,9 @@ public class Viking : MonoBehaviour
         if (Target == null)
             return;
 
+        if (!ISMove)
+            return;
+
         Vector3 targetdirection = Target.position - transform.position;
         Vector3 offsetdir = targetdirection.normalized * MoveSpeed * Time.deltaTime;
 
@@ -40,13 +94,35 @@ public class Viking : MonoBehaviour
         {
             transform.position = transform.position + offsetdir;
         }
+    }
 
+    void UpdateAttack()
+    {
+        m_RemineAttackSec -= Time.deltaTime;
+
+        if ( ISAttack == false )
+            return;
+
+        if(m_RemineAttackSec <= 0f)
+        {
+            m_RemineAttackSec = AttackDealySec;
+            SetAttack();
+        }
+
+        
+    }
+
+    void SetAttack()
+    {
+        Debug.Log("공격하기");
     }
 
     void Update()
     {
-        //UpdateDirectTarget();
-        UpdateAgent();
+        UpdateDirectTarget();
+        UpdateAttack();
+
+        //UpdateAgent();
 
     }
 }
