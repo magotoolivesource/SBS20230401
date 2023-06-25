@@ -42,6 +42,7 @@ public class Viking : MonoBehaviour
             return;
         }
 
+
         ISMove = false;
         ISAttack = true;
         AttackTarget = tower;
@@ -72,6 +73,11 @@ public class Viking : MonoBehaviour
         }
     }
 
+    void InitAttackRange()
+    {
+        //GetComponent<SphereCollider>().radius = AttackRange;
+
+    }
 
 
     void Start()
@@ -79,6 +85,7 @@ public class Viking : MonoBehaviour
         m_LinkAgent = GetComponent<NavMeshAgent>();
         m_LinkAgent.speed = MoveSpeed;
 
+        InitAttackRange();
     }
 
     protected NavMeshAgent m_LinkAgent = null;
