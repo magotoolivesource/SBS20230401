@@ -52,8 +52,15 @@ public class Viking : MonoBehaviour
 
     public void _MyOn_RangeTriggerEnter(Collider other)
     {
-        Debug.Log($"범위 충돌 : {this.name}, {other.transform.name} ");
+        //this.tag;
+        //this.gameObject.layer = 
 
+
+        Debug.Log($"범위 충돌 : {this.name}, {other.transform.name} ");
+        if(Target.tag == "Enemy" )
+        {
+            return;
+        }
 
         if(other.tag == "Enemy")
         {
@@ -151,6 +158,16 @@ public class Viking : MonoBehaviour
 
     void Start()
     {
+        int val1 = LayerMask.GetMask("Enemy"); // 128
+        int val2 = LayerMask.NameToLayer("Enemy"); // 7
+
+        this.gameObject.layer = LayerMask.NameToLayer("Enemy");
+        int val3 =  this.gameObject.layer;
+
+
+        Debug.Log($"값 확인 : {val1}, {val2}");
+
+
         m_LinkAgent = GetComponent<NavMeshAgent>();
         m_LinkAgent.speed = MoveSpeed;
 
@@ -240,5 +257,16 @@ public class Viking : MonoBehaviour
 
         //UpdateAgent();
 
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        if( Target )
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, Target.position);
+        }
+        
     }
 }

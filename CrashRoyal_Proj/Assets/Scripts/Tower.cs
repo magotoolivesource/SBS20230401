@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    private void Awake()
+    {
+        //gameObject.tag = "Tower";
+    }
     void Start()
     {
         
