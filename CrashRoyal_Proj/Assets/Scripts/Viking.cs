@@ -52,13 +52,24 @@ public class Viking : MonoBehaviour
 
     public void _MyOn_RangeTriggerEnter(Collider other)
     {
-        Debug.Log($"범위 : {this.name}, {other.transform.name} ");
+        Debug.Log($"범위 충돌 : {this.name}, {other.transform.name} ");
+
+
+        if(other.tag == "Enemy")
+        {
+            Target = other.transform;
+        }
+        
+
+        
     }
 
     public void _MyOn_RangeTriggerExit(Collider other)
     {
         Debug.Log($"범위 해제 : {this.name}, {other.transform.name} ");
     }
+
+
 
     public void _MyOn_AttackTriggerEnter(Collider other)
     {
